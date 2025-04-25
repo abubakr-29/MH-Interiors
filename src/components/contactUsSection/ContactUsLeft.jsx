@@ -23,11 +23,7 @@ const ContactUsLeft = () => {
             name="access_key"
             value="3fba3a61-1228-4f30-a4e0-352ad9142c36"
           ></input>
-          <input
-            type="hidden"
-            name="redirect"
-            value="https://mh-interiors.vercel.app/thank-you"
-          />
+          <input type="hidden" name="redirect" value="/thank-you" />
           <div>
             <label htmlFor="name" className="text-sm mb-1 block">
               Name
