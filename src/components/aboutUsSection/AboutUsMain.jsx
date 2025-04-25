@@ -24,7 +24,7 @@ const AboutUsMain = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="w-full mt:14 sm:mt-20 py-16"
+      className="w-full mt-20 py-16"
     >
       <div className="px-4">
         <motion.h2

@@ -324,7 +324,7 @@ const PortfolioMain = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-12 mt:18 sm:mt-24">
+    <div className="container mx-auto px-4 py-12 mt-24">
       <div className="text-center mb-12">
         <motion.h1 className="text-center text-4xl font-special2 font-bold text-[#0a646c] mb-8">
           Our Portfolio
