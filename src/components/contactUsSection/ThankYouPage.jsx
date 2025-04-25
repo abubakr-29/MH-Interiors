@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const ThankYouPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-md w-full mx-4 p-8 bg-white rounded-xl shadow-lg text-center">
         <div className="flex justify-center mb-6">
           <FaCheckCircle className="text-6xl text-[#0a646c]" />
