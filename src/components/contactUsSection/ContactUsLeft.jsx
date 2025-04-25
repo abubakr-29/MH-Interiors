@@ -1,4 +1,3 @@
-import React from "react";
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 
 const ContactUsLeft = () => {
@@ -14,14 +13,28 @@ const ContactUsLeft = () => {
           </h2>
         </div>
 
-        <form className="space-y-6">
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          className="space-y-6"
+        >
+          <input
+            type="hidden"
+            name="access_key"
+            value="3fba3a61-1228-4f30-a4e0-352ad9142c36"
+          ></input>
+          <input
+            type="hidden"
+            name="redirect"
+            value="http://localhost:5173/thank-you"
+          />
           <div>
             <label htmlFor="name" className="text-sm mb-1 block">
               Name
             </label>
             <input
               type="text"
-              id="name"
+              name="name"
               className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#0a646c] transition-colors"
               required
             />
@@ -32,7 +45,7 @@ const ContactUsLeft = () => {
             </label>
             <input
               type="email"
-              id="email"
+              name="email"
               className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#0a646c] transition-colors"
               required
             />
@@ -42,7 +55,7 @@ const ContactUsLeft = () => {
               Message
             </label>
             <textarea
-              id="message"
+              name="message"
               rows="4"
               className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#0a646c] transition-colors resize-none"
               required

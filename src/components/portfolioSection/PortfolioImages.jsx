@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router";
+import { motion } from "motion/react";
 import image1 from "../../assets/portfolio/image1.jpeg";
 import image2 from "../../assets/portfolio/image2.jpeg";
 import image3 from "../../assets/portfolio/image3.jpeg";
@@ -112,10 +113,18 @@ const PortfolioImages = () => {
       <div className="flex flex-col gap-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 py-8">
           {portfolioItems.map((item, index) => (
-            <div
+            <motion.div
               key={item.id}
               className="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 cursor-pointer"
               onClick={() => openLightbox(item.image, index)}
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
             >
               <div className="aspect-square overflow-hidden">
                 <img
@@ -130,17 +139,22 @@ const PortfolioImages = () => {
                   <p className="text-sm text-gray-200">{item.description}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-        <div className="mx-auto mt-2">
+        <motion.div
+          className="mx-auto mt-2"
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -100 }}
+          transition={{ duration: 1 }}
+        >
           <Link
             to="/portfolio"
             className="border-2 border-[#0a646c] bg-[#0a646c] text-white my-5 px-4 py-3 rounded hover:bg-[#095158] transition-colors duration-500 text-sm md:text-md"
           >
             View Portfolio
           </Link>
-        </div>
+        </motion.div>
       </div>
 
       {/* Lightbox */}

@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { motion } from "motion/react";
 import useScrollToTop from "../../hooks/useScrollToTop";
 
 const information = [
@@ -29,7 +30,12 @@ const ServicesText = () => {
 
   return (
     <div className="flex flex-col lg:flex-row justify-between mt-20 gap-12">
-      <div className="flex flex-col gap-6 w-full lg:w-[35%]">
+      <motion.div
+        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, x: -100 }}
+        transition={{ duration: 1 }}
+        className="flex flex-col gap-6 w-full lg:w-[35%]"
+      >
         <h2 className="text-[#0a646c] text-3xl lg:text-4xl font-bold font-special2 tracking-tight uppercase">
           We Love great process and transparency.
         </h2>
@@ -54,8 +60,13 @@ const ServicesText = () => {
             Book a Free Call
           </a>
         </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full lg:w-[65%]">
+      </motion.div>
+      <motion.div
+        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, x: 100 }}
+        transition={{ duration: 1 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full lg:w-[65%]"
+      >
         {information.map((info, index) => (
           <div key={index} className="flex flex-col gap-4">
             <h3 className="text-[#0a646c] font-special2 font-bold text-2xl uppercase">
@@ -64,7 +75,7 @@ const ServicesText = () => {
             <p className="text-lg leading-relaxed">{info.description}</p>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

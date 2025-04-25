@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 import image1 from "../../assets/portfolio/image1.jpeg";
 import image2 from "../../assets/portfolio/image2.jpeg";
 import image3 from "../../assets/portfolio/image3.jpeg";
@@ -186,7 +187,7 @@ const portfolioItems = [
     id: 22,
     image: image22,
     title: "Tiling",
-    category: "Tilin",
+    category: "Tiling",
     description: "Luxury tiling",
   },
   {
@@ -323,15 +324,15 @@ const PortfolioMain = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-12 mt-24">
+    <div className="container mx-auto px-4 py-12 mt:18 sm:mt-24">
       <div className="text-center mb-12">
-        <h1 className="text-center text-4xl font-special2 font-bold text-[#0a646c] mb-8">
+        <motion.h1 className="text-center text-4xl font-special2 font-bold text-[#0a646c] mb-8">
           Our Portfolio
-        </h1>
-        <p className="text-md sm:text-lg w-full sm:max-w-2xl mx-auto">
+        </motion.h1>
+        <motion.p className="text-md sm:text-lg w-full sm:max-w-2xl mx-auto">
           Explore our collection of stunning interior design projects that
           showcase our commitment to excellence and creativity.
-        </p>
+        </motion.p>
       </div>
 
       {loading ? (
@@ -341,26 +342,37 @@ const PortfolioMain = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {portfolioItems.map((item, index) => (
-            <div
-              key={item.id}
-              className="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-              onClick={() => openLightbox(item.image, index)}
+            <motion.div
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.03,
+                ease: "easeOut",
+              }}
             >
-              <div className="relative pb-[75%] w-full">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <div className="absolute bottom-0 p-6 text-white">
-                    <h3 className="text-lg font-medium mb-2">{item.title}</h3>
-                    <p className="text-sm text-gray-200">{item.category}</p>
+              <motion.div
+                key={item.id}
+                className="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                onClick={() => openLightbox(item.image, index)}
+              >
+                <div className="relative pb-[75%] w-full">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    <div className="absolute bottom-0 p-6 text-white">
+                      <h3 className="text-lg font-medium mb-2">{item.title}</h3>
+                      <p className="text-sm text-gray-200">{item.category}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       )}

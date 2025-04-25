@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { motion } from "motion/react";
 import image1 from "../../assets/service/image1.jpeg";
 import image2 from "../../assets/service/image2.jpeg";
 import image3 from "../../assets/service/image3.jpeg";
@@ -31,7 +32,13 @@ const ServicesImage = () => {
     <div className="flex flex-col gap-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-10">
         {services.map((service, index) => (
-          <div key={index} className="flex flex-col items-center">
+          <motion.div
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 40 }}
+            transition={{ duration: `0.${index + 5}` }}
+            key={index}
+            className="flex flex-col items-center"
+          >
             <div className="group w-[250px] h-[350px] lg:w-[210px] lg:h-[330px] xl:w-[250px] xl:h-[350px] transition-all duration-500 hover:-translate-y-2">
               <img
                 src={service.image}
@@ -42,10 +49,15 @@ const ServicesImage = () => {
             <h2 className="mt-4 font-special2 font-bold uppercase text-[#0a646c] text-2xl leading-snug w-[250px] lg:w-[210px] xl:w-[250px]">
               {service.text}
             </h2>
-          </div>
+          </motion.div>
         ))}
       </div>
-      <div className="mx-auto mt-5">
+      <motion.div
+        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, x: -100 }}
+        transition={{ duration: 1 }}
+        className="mx-auto mt-5"
+      >
         <Link
           to="/service"
           onClick={scrollToTop}
@@ -53,7 +65,7 @@ const ServicesImage = () => {
         >
           View Services
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };
