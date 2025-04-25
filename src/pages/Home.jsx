@@ -12,9 +12,18 @@ const Home = () => {
   useEffect(() => {
     if (location.hash) {
       const element = document.getElementById(location.hash.replace("#", ""));
+
       if (element) {
         setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth" });
+          const offset = 120;
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset - offset;
+
+          window.scrollTo({
+            top: y,
+            behavior: "smooth",
+          });
+          window.history.replaceState(null, "", location.pathname);
         }, 500);
       }
     }

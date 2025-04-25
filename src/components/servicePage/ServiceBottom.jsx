@@ -122,9 +122,14 @@ const ServiceBottom = () => {
         <p className="text-lg sm:text-xl mb-8 font-light">
           Let's bring your dream space to life.
         </p>
-        <button className="inline-flex items-center px-6 py-3 border-2 border-[#0a646c] bg-[#0a646c] text-white rounded-lg hover:bg-[#095158] transition-all duration-500 hover:shadow-lg cursor-pointer">
+        <a
+          href="https://wa.me/+919007510090?text=Hi%20MH%20Interiors!%20I%27m%20interested%20in%20your%20interior%20design%20services.%20Can%20we%20discuss%20my%20requirements%3F"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center px-6 py-3 border-2 border-[#0a646c] bg-[#0a646c] text-white rounded-lg hover:bg-[#095158] transition-all duration-500 hover:shadow-lg cursor-pointer"
+        >
           Book a Free Call
-        </button>
+        </a>
       </div>
     </div>
   );

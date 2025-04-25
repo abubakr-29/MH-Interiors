@@ -56,7 +56,9 @@ const AboutUsMain = () => {
 
           <div className="mt-8">
             <a
-              href="tel:+917980033244"
+              href="https://wa.me/+919007510090?text=Hi%20MH%20Interiors!%20I%27m%20interested%20in%20your%20interior%20design%20services.%20Can%20we%20discuss%20my%20requirements%3F"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#0a646c] text-white my-5 px-6 py-3 rounded hover:bg-[#095158] transition-colors duration-500 text-sm md:text-md"
             >
               Book a Free Call

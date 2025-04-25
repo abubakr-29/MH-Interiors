@@ -7,7 +7,7 @@ const HeroLeft = () => {
         <img
           src={heroImage1}
           alt="Image"
-          className="rounded-xl w-full h-[500px] xl:w-[450px] xl:h-[700px] object-cover shadow-lg shadow-black/50"
+          className="rounded-xl w-full h-[350px] sm:h-[450px] xl:w-[450px] xl:h-[700px] object-cover shadow-lg shadow-black/50"
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}

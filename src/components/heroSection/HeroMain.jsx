@@ -4,7 +4,7 @@ import SubHero from "./SubHero";
 
 const HeroMain = () => {
   return (
-    <div className="pt-35" id="hero">
+    <div className="pt-30 sm:pt-35" id="hero">
       <div className="flex flex-wrap xl:flex-row">
         <HeroLeft />
         <HeroText />

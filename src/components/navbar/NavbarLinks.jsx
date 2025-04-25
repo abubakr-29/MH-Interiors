@@ -1,5 +1,6 @@
 import { Link as RouterLink, useLocation, useNavigate } from "react-router";
 import { Link as ScrollLink } from "react-scroll";
+import useScrollToTop from "../../hooks/useScrollToTop";
 
 const links = [
   { name: "Home", section: "/", type: "page" },
@@ -12,20 +13,31 @@ const links = [
 const NavbarLink = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const scrollToTop = useScrollToTop();
 
   const handleScrollToHome = (section) => {
     if (location.pathname === "/") {
       const element = document.getElementById(section);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        const offsetPosition = element.offsetTop - 120;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
       }
     } else {
       navigate(`/#${section}`);
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const isActive = (link) => {
+    if (link.type === "page") {
+      return location.pathname === link.section;
+    }
+    if (link.type === "scroll-to-home") {
+      return location.pathname === "/" && location.hash === `#${link.section}`;
+    }
+    return false;
   };
 
   return (
@@ -37,7 +49,7 @@ const NavbarLink = () => {
               <RouterLink
                 to={link.section}
                 className="cursor-pointer text-md transition-all duration-500"
-                onClick={() => scrollToTop()}
+                onClick={scrollToTop}
               >
                 {link.name}
               </RouterLink>
@@ -51,7 +63,7 @@ const NavbarLink = () => {
                 duration={500}
                 offset={-120}
                 className="cursor-pointer text-md transition-all duration-500"
-                onClick={() => scrollToTop()}
+                onClick={scrollToTop}
               >
                 {link.name}
               </ScrollLink>
@@ -66,7 +78,11 @@ const NavbarLink = () => {
               </span>
             )}
 
-            <div className="mx-auto bg-black w-0 group-hover:w-full h-[1.5px] transition-all duration-500"></div>
+            <div
+              className={`mx-auto bg-black h-[1.5px] transition-all duration-500 ${
+                isActive(link) ? "w-full" : "w-0 group-hover:w-full"
+              }`}
+            ></div>
           </li>
         ))}
       </ul>
