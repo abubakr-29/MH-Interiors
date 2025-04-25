@@ -26,7 +26,7 @@ const ContactUsLeft = () => {
           <input
             type="hidden"
             name="redirect"
-            value="http://localhost:5173/thank-you"
+            value="https://mh-interiors.vercel.app/thank-you"
           />
           <div>
             <label htmlFor="name" className="text-sm mb-1 block">
