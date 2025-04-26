@@ -41,16 +41,13 @@ const HeroText = () => {
           Expertise in Painting, Custom Furniture, Tiling, Electrical Work, and
           Modular Kitchens.
         </motion.p>
-        <motion.ul className="mt-4 text-md sm:text-lg space-y-1 list-disc list-inside leading-relaxed tracking-tight">
-          <motion.li variants={childVariants}>
-            Tailored interior solutions to match your style.
-          </motion.li>
-          <motion.li variants={childVariants}>
-            Commitment to timely project completion.
-          </motion.li>
-          <motion.li variants={childVariants}>
-            Transparent pricing with no hidden costs.
-          </motion.li>
+        <motion.ul
+          variants={childVariants}
+          className="mt-4 text-md sm:text-lg space-y-1 list-disc list-inside leading-relaxed tracking-tight"
+        >
+          <li>Tailored interior solutions to match your style.</li>
+          <li>Commitment to timely project completion.</li>
+          <li>Transparent pricing with no hidden costs.</li>
         </motion.ul>
         <motion.a
           variants={childVariants}
