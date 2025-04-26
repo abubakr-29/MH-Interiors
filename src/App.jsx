@@ -7,6 +7,7 @@ import Service from "./pages/Service";
 import Portfolio from "./pages/Portfolio";
 import ThankYou from "./pages/ThankYou";
 import FooterMain from "./components/footer/FooterMain";
+import BackToTop from "./components/BackToTop";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           </Routes>
         </div>
         <FooterMain />
+        <BackToTop />
       </main>
     </BrowserRouter>
   );
