@@ -31,12 +31,12 @@ const FooterMain = () => {
                   <MdEmail className="text-sm md:text-lg" />
                 </div>
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=mhinteriordesings77@gmail.com&su=Interior%20Design%20Inquiry&body=Hi%20MH%20Interiors%2C%0A%0AI%20am%20interested%20in%20your%20interior%20design%20services.%20I%20would%20love%20to%20discuss%20my%20requirements%20and%20see%20how%20you%20can%20help%20transform%20my%20space.%0A%0ALooking%20forward%20to%20hearing%20from%20you!"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@mh-interiors.in&su=Interior%20Design%20Inquiry&body=Hi%20MH%20Interiors%2C%0A%0AI%20am%20interested%20in%20your%20interior%20design%20services.%20I%20would%20love%20to%20discuss%20my%20requirements%20and%20see%20how%20you%20can%20help%20transform%20my%20space.%0A%0ALooking%20forward%20to%20hearing%20from%20you!"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm md:text-md hover:text-gray-200 transition-all duration-500"
                 >
-                  mhinteriordesings77@gmail.com
+                  info@mh-interiors.in
                 </a>
               </div>
             </div>
@@ -92,7 +92,7 @@ const FooterMain = () => {
               © {currentYear} MH Interiors | All rights reserved.
             </p>
             <a
-              href="https://fa-media.vercel.app"
+              href="https://famedia.co.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-gray-200 hover:text-white transition-all duration-500 transform hover:scale-105 relative after:content-[''] after:absolute after:w-0 after:h-[1px] after:bg-white after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-500"
