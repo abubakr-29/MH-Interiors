@@ -73,7 +73,7 @@ const FooterMain = () => {
                 </div>
               </a>
               <a
-                href="https://www.instagram.com/mh_interiors.co.in?utm_source=qr&igsh=MTZoZms1dWg4dm5scQ%3D%3D"
+                href="https://www.instagram.com/mh_interiors.in?igsh=MTY5Z29lZjM3aW16bQ=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-icon-link"

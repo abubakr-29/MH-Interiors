@@ -9,31 +9,31 @@ const links = [
     name: "Home",
     section: "/",
     type: "page",
-    icon: <FaHome className="mr-4 w-6 text-[#E5D9B6] text-center" />,
+    icon: <FaHome className="mr-4 w-6 text-[#c15f3c] text-center" />,
   },
   {
     name: "About",
     section: "/about",
     type: "page",
-    icon: <FaStar className="mr-4 w-6 text-[#A4BE7B] text-center" />,
+    icon: <FaStar className="mr-4 w-6 text-[#b1ada1] text-center" />,
   },
   {
     name: "Service",
     section: "/service",
     type: "page",
-    icon: <FaCog className="mr-4 w-6 text-[#E5D9B6] text-center" />,
+    icon: <FaCog className="mr-4 w-6 text-[#c15f3c] text-center" />,
   },
   {
     name: "Portfolio",
     section: "/portfolio",
     type: "page",
-    icon: <FaBriefcase className="mr-4 w-6 text-[#A4BE7B] text-center" />,
+    icon: <FaBriefcase className="mr-4 w-6 text-[#b1ada1] text-center" />,
   },
   {
     name: "Contact",
     section: "contact",
     type: "scroll-to-home",
-    icon: <FaEnvelope className="mr-4 w-6 text-[#E5D9B6] text-center" />,
+    icon: <FaEnvelope className="mr-4 w-6 text-[#c15f3c] text-center" />,
   },
 ];
 
@@ -106,7 +106,7 @@ const NavbarLinksSM = () => {
       </div>
 
       <div
-        className={`lg:hidden md:block mobile-menu fixed inset-0 z-30 pt-30 px-10 sm:px-14 h-[100vh] w-[100%] bg-white transition-all duration-500 ${
+        className={`lg:hidden md:block mobile-menu fixed inset-0 z-30 pt-30 px-10 sm:px-14 h-[100vh] w-[100%] bg-[#f4f3ee] transition-all duration-500 ${
           isOpen ? "open" : "pointer-events-none"
         }`}
       >

@@ -7,6 +7,10 @@
   --font-special2: "Antonio", "sans-serif";
 }
 
+:root {
+  background-color: #f4f3ee;
+}
+
 .mobile-menu {
   transform: translateX(100%);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);

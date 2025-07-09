@@ -1,278 +1,14 @@
-import React, { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
+import Papa from "papaparse";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
-import image1 from "../../assets/portfolio/image1.jpeg";
-import image2 from "../../assets/portfolio/image2.jpeg";
-import image3 from "../../assets/portfolio/image3.jpeg";
-import image4 from "../../assets/portfolio/image4.jpeg";
-import image5 from "../../assets/portfolio/image5.jpeg";
-import image6 from "../../assets/portfolio/image6.jpeg";
-import image7 from "../../assets/portfolio/image7.jpeg";
-import image8 from "../../assets/portfolio/image8.jpeg";
-import image9 from "../../assets/portfolio/image9.jpeg";
-import image10 from "../../assets/portfolio/image10.jpeg";
-import image11 from "../../assets/portfolio/image11.jpeg";
-import image12 from "../../assets/portfolio/image12.jpeg";
-import image13 from "../../assets/portfolio/image13.jpeg";
-import image14 from "../../assets/portfolio/image14.jpeg";
-import image15 from "../../assets/portfolio/image15.jpeg";
-import image16 from "../../assets/portfolio/image16.jpeg";
-import image17 from "../../assets/portfolio/image17.jpeg";
-import image18 from "../../assets/portfolio/image18.jpeg";
-import image19 from "../../assets/portfolio/image19.jpeg";
-import image20 from "../../assets/portfolio/image20.jpeg";
-import image21 from "../../assets/portfolio/image21.jpeg";
-import image22 from "../../assets/portfolio/image22.jpeg";
-import image23 from "../../assets/portfolio/image23.jpeg";
-import image24 from "../../assets/portfolio/image24.jpeg";
-import image25 from "../../assets/portfolio/image25.jpeg";
-import image26 from "../../assets/portfolio/image26.jpeg";
-import image27 from "../../assets/portfolio/image27.jpeg";
-import image28 from "../../assets/portfolio/image28.jpeg";
-import image29 from "../../assets/portfolio/image29.jpeg";
-import image30 from "../../assets/portfolio/image30.jpeg";
-import image31 from "../../assets/portfolio/image31.jpeg";
-import image32 from "../../assets/portfolio/image32.jpeg";
-import image33 from "../../assets/portfolio/image33.jpeg";
-
-const portfolioItems = [
-  {
-    id: 1,
-    image: image1,
-    title: "Modern Living Space",
-    category: "Living Room",
-    description: "Contemporary design with elegant touches",
-  },
-  {
-    id: 2,
-    image: image2,
-    title: "Custom Wardrobe",
-    category: "Storage Solutions",
-    description: "Bespoke wardrobe design",
-  },
-  {
-    id: 3,
-    image: image3,
-    title: "Built-in Cabinet",
-    category: "Custom Furniture",
-    description: "Space-efficient storage solution",
-  },
-  {
-    id: 4,
-    image: image4,
-    title: "Accent Bedroom",
-    category: "Bedroom",
-    description: "Modern bedroom with custom highlights",
-  },
-  {
-    id: 5,
-    image: image5,
-    title: "Designer Partition",
-    category: "Room Dividers",
-    description: "Elegant space separation",
-  },
-  {
-    id: 6,
-    image: image6,
-    title: "Display Unit",
-    category: "Storage Solutions",
-    description: "Modern showcase design",
-  },
-  {
-    id: 7,
-    image: image7,
-    title: "Bathroom Storage",
-    category: "Bathroom",
-    description: "Elegant bathroom cabinet solution",
-  },
-  {
-    id: 8,
-    image: image8,
-    title: "Contemporary Living",
-    category: "Living Room",
-    description: "Modern living space design",
-  },
-  {
-    id: 9,
-    image: image9,
-    title: "Kitchen Renovation",
-    category: "Kitchen",
-    description: "Modern kitchen with sleek finishes",
-  },
-  {
-    id: 10,
-    image: image10,
-    title: "Toilet",
-    category: "Toilet",
-    description: "Professional toilet design",
-  },
-  {
-    id: 11,
-    image: image11,
-    title: "Master Bedroom Suite",
-    category: "Bedroom",
-    description: "Luxurious master bedroom design",
-  },
-  {
-    id: 12,
-    image: image12,
-    title: "Master Bedroom Suite",
-    category: "Bedroom",
-    description: "Luxurious master bedroom design",
-  },
-  {
-    id: 13,
-    image: image13,
-    title: "Walk-in Closet",
-    category: "Storage Solutions",
-    description: "Luxury wardrobe system",
-  },
-  {
-    id: 14,
-    image: image14,
-    title: "Modern Living Room",
-    category: "Living Room",
-    description: "Contemporary living room design",
-  },
-  {
-    id: 15,
-    image: image15,
-    title: "Living Room",
-    category: "Living Room",
-    description: "Elegant room space",
-  },
-  {
-    id: 16,
-    image: image16,
-    title: "Bedroom",
-    category: "Bedroom",
-    description: "Comfortable bedroom",
-  },
-  {
-    id: 17,
-    image: image17,
-    title: "Electrical",
-    category: "Electrical",
-    description: "Functional electric work",
-  },
-  {
-    id: 18,
-    image: image18,
-    title: "Powder Room",
-    category: "Bathroom",
-    description: "Elegant small bathroom design",
-  },
-  {
-    id: 19,
-    image: image19,
-    title: "Wall Design",
-    category: "Wall",
-    description: "Modern wall design",
-  },
-  {
-    id: 20,
-    image: image20,
-    title: "Kitchen Renovation",
-    category: "Kitchen",
-    description: "Modern kitchen with sleek finishes",
-  },
-  {
-    id: 21,
-    image: image21,
-    title: "Wardrobe",
-    category: "Wardrobe",
-    description: "Modern storage solution",
-  },
-  {
-    id: 22,
-    image: image22,
-    title: "Tiling",
-    category: "Tiling",
-    description: "Luxury tiling",
-  },
-  {
-    id: 23,
-    image: image23,
-    title: "Living Room",
-    category: "Living Room",
-    description: "Elegant room space",
-  },
-  {
-    id: 24,
-    image: image24,
-    title: "Wardrobe",
-    category: "Wardrobe",
-    description: "Elegant storage solution",
-  },
-  {
-    id: 25,
-    image: image25,
-    title: "Kitchen Renovation",
-    category: "Kitchen",
-    description: "Modern kitchen design",
-  },
-  {
-    id: 26,
-    image: image26,
-    title: "Kitchen",
-    category: "Kitchen",
-    description: "Fun recreational space",
-  },
-  {
-    id: 27,
-    image: image27,
-    title: "Mudroom",
-    category: "Utility",
-    description: "Organized entryway storage",
-  },
-  {
-    id: 28,
-    image: image28,
-    title: "Outdoor Living",
-    category: "Outdoor Living",
-    description: "Comfortable patio design",
-  },
-  {
-    id: 29,
-    image: image29,
-    title: "Bedroom",
-    category: "Bedroom",
-    description: "Comfortable bedroom",
-  },
-  {
-    id: 30,
-    image: image30,
-    title: "Reading Nook",
-    category: "Bedroom",
-    description: "Cozy reading corner",
-  },
-  {
-    id: 31,
-    image: image31,
-    title: "Bedroom",
-    category: "Bedroom",
-    description: "Elegant storage and prep space",
-  },
-  {
-    id: 32,
-    image: image32,
-    title: "Living Room",
-    category: "Living Room",
-    description: "Elegant room space",
-  },
-  {
-    id: 33,
-    image: image33,
-    title: "Kitchen Renovation",
-    category: "Kitchen",
-    description: "Modern kitchen design",
-  },
-];
+import Fallback from "../../assets/fallback.jpg";
 
 const PortfolioMain = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [portfolioItems, setPortfolioItems] = useState([]);
 
   const openLightbox = (image, index) => {
     setSelectedImage(image);
@@ -323,6 +59,44 @@ const PortfolioMain = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      try {
+        const res = await fetch(
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vStMfxorRG2hXjNO50JRJ9nfxfq1GDMAknDLClaVRLoAWvHxjAThX65I8cUpp7hCbRV9V_TBglsARjv/pub?gid=0&single=true&output=csv"
+        );
+        const csv = await res.text();
+        const parsed = Papa.parse(csv, { header: true });
+
+        const items = parsed.data.map((item, i) => ({
+          id: i + 1,
+          title: item.Title?.trim(),
+          category: item.Category?.trim(),
+          description: item.Description?.trim(),
+          image:
+            item.ImageURL?.trim()?.replace(
+              "uc?export=view&id=",
+              "thumbnail?id="
+            ) + "&sz=w1000",
+        }));
+
+        setPortfolioItems(items.filter((item) => item.image)); // Only valid entries
+      } catch (error) {
+        console.error("Error fetching portfolio:", error);
+      }
+    };
+
+    fetchPortfolio();
+  }, []);
+
+  // Preload lightbox images
+  useEffect(() => {
+    portfolioItems.forEach((item) => {
+      const img = new Image();
+      img.src = item.image;
+    });
+  }, [portfolioItems]);
+
   return (
     <div className="container mx-auto px-4 py-12 mt-24">
       <div className="text-center mb-12">
@@ -343,17 +117,16 @@ const PortfolioMain = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {portfolioItems.map((item, index) => (
             <motion.div
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              viewport={{ once: true, margin: "-100px" }}
+              key={index}
+              initial={{ opacity: 0, scale: 0.96, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{
-                duration: 0.6,
-                delay: index * 0.03,
+                duration: 0.5,
                 ease: "easeOut",
               }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <motion.div
-                key={item.id}
                 className="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 cursor-pointer"
                 onClick={() => openLightbox(item.image, index)}
               >
@@ -361,6 +134,8 @@ const PortfolioMain = () => {
                   <img
                     src={item.image}
                     alt={item.title}
+                    onError={(e) => (e.target.src = Fallback)}
+                    referrerPolicy="no-referrer"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
@@ -392,7 +167,7 @@ const PortfolioMain = () => {
             </button>
 
             <button
-              className="absolute left-4 text-white hover:text-gray-300 transition-colors p-2 hover:bg-white/10 rounded-full"
+              className="absolute left-4 text-white hover:text-gray-300 transition-colors p-2 hover:bg-white/10 rounded-full cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 goToPrevious();
@@ -404,12 +179,13 @@ const PortfolioMain = () => {
             <img
               src={selectedImage}
               alt="Enlarged view"
+              onError={(e) => (e.target.src = Fallback)}
               className="max-h-[90vh] max-w-[90vw] object-contain"
               onClick={(e) => e.stopPropagation()}
             />
 
             <button
-              className="absolute right-4 text-white hover:text-gray-300 transition-colors p-2 hover:bg-white/10 rounded-full"
+              className="absolute right-4 text-white hover:text-gray-300 transition-colors p-2 hover:bg-white/10 rounded-full cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 goToNext();
