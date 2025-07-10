@@ -1,70 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
+import Papa from "papaparse";
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import image1 from "../../assets/portfolio/image1.jpeg";
-import image2 from "../../assets/portfolio/image2.jpeg";
-import image3 from "../../assets/portfolio/image3.jpeg";
-import image4 from "../../assets/portfolio/image4.jpeg";
-import image5 from "../../assets/portfolio/image5.jpeg";
-import image6 from "../../assets/portfolio/image6.jpeg";
-import image7 from "../../assets/portfolio/image7.jpeg";
-import image8 from "../../assets/portfolio/image8.jpeg";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-
-const portfolioItems = [
-  {
-    id: 1,
-    image: image1,
-    title: "Modern Kitchen Design",
-    description: "Contemporary kitchen with yellow accents",
-  },
-  {
-    id: 2,
-    image: image2,
-    title: "Custom Wardrobe",
-    description: "Wooden finish wardrobe solution",
-  },
-  {
-    id: 3,
-    image: image3,
-    title: "Built-in Cabinet",
-    description: "Space-saving cabinet design",
-  },
-  {
-    id: 4,
-    image: image4,
-    title: "Red Accent Bedroom",
-    description: "Modern Bedroom with red highlights",
-  },
-  {
-    id: 5,
-    image: image5,
-    title: "Decorative Partition",
-    description: "Elegant divider with pattern",
-  },
-  {
-    id: 6,
-    image: image6,
-    title: "Glass Showcase",
-    description: "Modern display unit",
-  },
-  {
-    id: 7,
-    image: image7,
-    title: "Bathroom Cabinet",
-    description: "Elegant bathroom storage solution",
-  },
-  {
-    id: 8,
-    image: image8,
-    title: "Modern Living Room",
-    description: "Contemporary living room design",
-  },
-];
+import Fallback from "../../assets/fallback.jpg";
 
 const PortfolioImages = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [portfolioItems, setPortfolioItems] = useState([]);
 
   const openLightbox = (image, index) => {
     setSelectedImage(image);
@@ -82,13 +26,13 @@ const PortfolioImages = () => {
       (currentIndex - 1 + portfolioItems.length) % portfolioItems.length;
     setCurrentIndex(newIndex);
     setSelectedImage(portfolioItems[newIndex].image);
-  }, [currentIndex]);
+  }, [currentIndex, portfolioItems]);
 
   const goToNext = useCallback(() => {
     const newIndex = (currentIndex + 1) % portfolioItems.length;
     setCurrentIndex(newIndex);
     setSelectedImage(portfolioItems[newIndex].image);
-  }, [currentIndex]);
+  }, [currentIndex, portfolioItems]);
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -108,12 +52,43 @@ const PortfolioImages = () => {
     }
   }, [selectedImage, handleKeyDown]);
 
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      try {
+        const res = await fetch(
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vStMfxorRG2hXjNO50JRJ9nfxfq1GDMAknDLClaVRLoAWvHxjAThX65I8cUpp7hCbRV9V_TBglsARjv/pub?gid=0&single=true&output=csv"
+        );
+        const csv = await res.text();
+        const parsed = Papa.parse(csv, { header: true });
+
+        const items = parsed.data.map((item, i) => ({
+          id: i + 1,
+          title: item.Title?.trim(),
+          category: item.Category?.trim(),
+          description: item.Description?.trim(),
+          image:
+            item.ImageURL?.trim()?.replace(
+              "uc?export=view&id=",
+              "thumbnail?id="
+            ) + "&sz=w1000",
+        }));
+
+        setPortfolioItems(items.filter((item) => item.image).slice(0, 8)); // Only first 8 images
+      } catch (error) {
+        console.error("Error fetching portfolio:", error);
+      }
+    };
+
+    fetchPortfolio();
+  }, []);
+
   return (
     <>
       <div className="flex flex-col gap-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 py-8">
           {portfolioItems.map((item, index) => (
             <motion.div
+              key={item.id}
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 20 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -124,7 +99,6 @@ const PortfolioImages = () => {
               }}
             >
               <div
-                key={item.id}
                 className="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 cursor-pointer"
                 onClick={() => openLightbox(item.image, index)}
               >
@@ -132,6 +106,7 @@ const PortfolioImages = () => {
                   <img
                     src={item.image}
                     alt={item.title}
+                    onError={(e) => (e.target.src = Fallback)}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -187,8 +162,10 @@ const PortfolioImages = () => {
             <img
               src={selectedImage}
               alt="Enlarged view"
+              onError={(e) => (e.target.src = Fallback)}
               className="max-h-[90vh] max-w-[90vw] object-contain"
               onClick={(e) => e.stopPropagation()}
+              referrerPolicy="no-referrer"
             />
 
             <button

@@ -26,13 +26,13 @@ const PortfolioMain = () => {
       (currentIndex - 1 + portfolioItems.length) % portfolioItems.length;
     setCurrentIndex(newIndex);
     setSelectedImage(portfolioItems[newIndex].image);
-  }, [currentIndex]);
+  }, [currentIndex, portfolioItems]);
 
   const goToNext = useCallback(() => {
     const newIndex = (currentIndex + 1) % portfolioItems.length;
     setCurrentIndex(newIndex);
     setSelectedImage(portfolioItems[newIndex].image);
-  }, [currentIndex]);
+  }, [currentIndex, portfolioItems]);
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -182,6 +182,7 @@ const PortfolioMain = () => {
               onError={(e) => (e.target.src = Fallback)}
               className="max-h-[90vh] max-w-[90vw] object-contain"
               onClick={(e) => e.stopPropagation()}
+              referrerPolicy="no-referrer"
             />
 
             <button
