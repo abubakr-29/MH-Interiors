@@ -1,12 +1,20 @@
 import { motion } from "motion/react";
-
-const information = [
-  { value: "03+", text: "Years of experience" },
-  { value: "30+", text: "Worked with Clients" },
-  { value: "4.8", text: "Overall service Ratings" },
-];
+import { useMemo } from "react";
 
 const SubHero = () => {
+  const yearsOfExperience = useMemo(() => {
+    const startYear = 2021;
+    const currentYear = new Date().getFullYear();
+    const years = currentYear - startYear;
+    return `${years.toString().padStart(2, "0")}+`;
+  }, []);
+
+  const information = [
+    { value: yearsOfExperience, text: "Years of experience" },
+    { value: "40+", text: "Worked with Clients" },
+    { value: "4.8", text: "Overall service Ratings" },
+  ];
+
   return (
     <div className="w-full py-8 px-0 md:px-4 flex flex-col lg:flex-row justify-between items:start lg:items-center mt-10">
       <motion.div

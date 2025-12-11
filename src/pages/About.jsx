@@ -11,6 +11,7 @@ const About = () => {
     mainEntity: {
       "@type": "Organization",
       name: "MH Interiors",
+      foundingDate: "2021",
       founder: {
         "@type": "Person",
         name: "Md Hafiz",
